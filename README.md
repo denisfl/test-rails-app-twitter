@@ -1,2 +1,2 @@
-test-rails-app-twitter
+test rails app twitter
 

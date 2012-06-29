@@ -1,0 +1,16 @@
+ 
+<div class="notice">
+	<h2><%= gravatar_for @user%> <%= @user.name%></h2>
+	<strong>Name</strong> <%= @user.name %><br />
+    <strong>URL</strong> <%= link_to user_path(@user), @user %><br />
+    <strong>Microposts</strong> <%= @user.microposts.count %>
+</div>	
+
+      <% unless @user.microposts.empty? %>
+        
+         	<%= render @microposts %>
+        
+        <%= will_paginate @microposts %>
+      <% end %>
+ 
+

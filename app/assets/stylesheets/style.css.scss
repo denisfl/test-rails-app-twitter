@@ -1,0 +1,290 @@
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, 
+p, blockquote, pre, a, abbr, address, cite, code, del, dfn, em, 
+img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, hr, 
+dl, dt, dd, ol, ul, li, fieldset, form, label, legend, 
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figure, figcaption, hgroup, 
+menu, footer, header, nav, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+
+$text-color: #3c3c3c;
+$background-color: #F0F2F4;
+$width-layout: 620px;
+$font-size: 100%;
+
+@mixin text-shadow ($color: white) {
+  text-shadow: 1px 1px 0px $color;
+}
+
+@mixin box-shadow ($x: 0px, $y: 0px, $blur: 5px, $spread:1px, $color: rgba(0, 0, 0, 0.25)) {
+  box-shadow: $x $y $blur $spread $color;
+  -moz-box-shadow: $x $y $blur $spread $color;
+  -webkit-box-shadow: $x $y $blur $spread $color;
+}
+
+@mixin box-shadow-inset ($x: 0px, $y: 0px, $blur: 5px, $spread:1px, $color: rgba(0, 0, 0, 0.25)) {
+  box-shadow:inset $x $y $blur $spread $color;
+  -moz-box-shadow:inset $x $y $blur $spread $color;
+  -webkit-box-shadow:inset $x $y $blur $spread $color;
+}
+
+@mixin border-radius ($radius: 4px) {
+  -webkit-border-radius: $radius; 
+  border-radius: $radius;  
+}
+
+
+
+/*  Typography presets
+  ------------------  */
+
+body {margin:0 auto;font-size: $font-size; font-family: 'PT Sans Caption', Arial, sans-serif; }
+
+p {line-height:1.8em; @include text-shadow;}
+h1,h2,h3 {font-family: "Georgia", serif;letter-spacing: 1px;font-weight: normal;color: black;}
+h1 {font-size: 3em;line-height: 3em;letter-spacing: -1px;margin-bottom: 0.9em;text-shadow: 1px 1px 0px #fff;}
+h2 {font-size: 1.8em;line-height: 1.4em;margin-bottom: 0.9em;text-shadow: 1px 1px 0px #fff;}
+h3 {font-size: 1.4em; line-height: 1.4em;margin-bottom: 0.9em;text-shadow: 1px 1px 0px #fff;}
+ul, ol {margin: 0px 5px 10px 30px;}
+
+.small, small {font-size: 13px; line-height: 18px;}
+
+hr {margin: 18px 0;border: 0;border-top: 1px solid #ccc;border-bottom: 1px solid #ffffff;}
+
+a {
+  text-decoration: none;text-shadow: none;color: #21759B;
+  -webkit-transition: 0.3s linear all;
+  -moz-transition: 0.3s linear all;
+  -ms-transition: 0.3s linear all;
+  -o-transition: 0.3s linear all;
+  transition: 0.3s linear all;  
+}
+
+p a:hover {color:#D54E21;border-bottom:1px solid #D54E21;}
+
+/* Selection colours (easy to forget) */
+
+::selection     {text-shadow: none;color: #F9F9F9;background: #D54E21;}
+::-moz-selection  {background: #D54E21;}
+img::selection    {background: transparent;}
+img::-moz-selection {background: transparent;}
+body {-webkit-tap-highlight-color: rgb(255,255,158);}
+
+
+/*  Default Layout: 620px. 
+    Gutters: 24px.
+    Outer margins: 48px.
+    Leftover space for scrollbars @1024px: 32px.
+-------------------------------------------------------------------------------
+cols    1     2      3      4      5      6      7      8      9      10
+px      68    160    252    344    436    528    620    712    804    896    */
+
+
+
+body {
+  background: $background-color;
+  color: $text-color;
+  -webkit-text-size-adjust: 100%; /* Stops Mobile Safari from auto-adjusting font-sizes */
+}
+
+header {
+  display:block;
+  float:left;
+  width: 100%;
+  background-color: #444;
+  color: white;
+  margin-bottom: 20px;
+  nav {
+    margin: 0 auto;
+    width: $width-layout;
+    
+    ul {margin: 0px; list-style-type: none;}
+      li {display:inline;float:left;}
+        a {
+          display:inline-block;
+          color:white;
+          padding: 10px 15px;
+          font-size:$font-size - 10%;
+          @include text-shadow(black); 
+        }
+          a:hover {color: #ccc;}
+          a:first-child {padding-left:0px;}
+     
+     img.gravatar {
+       display:inline;
+       margin-bottom:-5px; 
+       @include border-radius; 
+     }
+     
+  }
+}
+
+section.content {
+  width: $width-layout;
+  margin: 0 auto;
+  padding: 0px 48px 84px;
+
+
+  article img {
+    margin-bottom: 0.9em;padding: 15px; background-color: white; border:1px solid whitesmoke;
+    @include box-shadow($color:rgba(0, 0, 0, 0.25));
+    @include border-radius;  
+  }
+  
+  article a img:hover {background-color: white; @include box-shadow($color:rgba(0, 180, 255, 0.5));}
+  
+  .notice {
+    width:$width-layout;
+    display:block;
+    float:left;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    background-color: darken($background-color, 5%);
+    @include box-shadow-inset;
+    @include border-radius;
+  }
+  
+  .field {
+    margin: 10px 0px;
+    
+    label {
+      width: $width-layout;
+      display:block;
+      color: lighten($text-color, 30%);
+    } 
+    
+    input {
+      width: $width-layout;
+      display:block;
+      padding: 15px;
+      border:none;
+      font-size: 16px;
+      @include border-radius;
+      @include box-shadow-inset($color:rgba(0,0,0, 0.25));
+     
+      &:focus {
+        outline:none;
+        @include border-radius;
+        @include box-shadow-inset($color:rgba(0, 180, 255, 0.5));
+      }      
+    }
+
+   
+    
+  }
+  .btn {
+    display: inline-block;
+    *display: inline;
+    /* IE7 inline-block hack */
+  
+    *zoom: 1;
+    padding: 4px 10px 4px;
+    margin-bottom: 0;
+    font-size: 13px;
+    line-height: 18px;
+    color: #333333;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    vertical-align: middle;
+    background-color: #f5f5f5;
+    background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+    background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: linear-gradient(top, #ffffff, #e6e6e6);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e6e6e6', GradientType=0);
+    border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+    border: 1px solid #cccccc;
+    border-bottom-color: #b3b3b3;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    *margin-left: .3em;  
+
+
+    &:hover,
+    &:active,
+    &.active,
+    &.disabled,
+    &[disabled] {
+      background-color: #e6e6e6;
+    }
+    &:active,
+    &.active {
+      background-color: #cccccc \9;
+    }
+    &:first-child {
+      *margin-left: 0;
+    }
+    &:hover {
+      color: #333333;
+      text-decoration: none;
+      background-color: #e6e6e6;
+      background-position: 0 -15px;
+      -webkit-transition: background-position 0.1s linear;
+      -moz-transition: background-position 0.1s linear;
+      -ms-transition: background-position 0.1s linear;
+      -o-transition: background-position 0.1s linear;
+      transition: background-position 0.1s linear;
+    }
+    &:focus {
+      outline: thin dotted #333;
+      outline: 5px auto -webkit-focus-ring-color;
+      outline-offset: -2px;
+    }
+    &.active,
+    &:active {
+      background-image: none;
+      -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+      -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+      background-color: #e6e6e6;
+      background-color: #d9d9d9 \9;
+      outline: 0;
+    }    
+    
+    
+     
+  }
+
+
+  
+  .big {padding: 10px 25px 10px;}
+  
+}
+
+
+    textarea {
+      width: $width-layout;
+      height: 30px;
+      margin: 0;
+      font-size: 100%;
+      vertical-align: middle;
+      overflow: auto;
+      vertical-align: top;
+      resize: none;
+      display:block;
+      padding: 15px;
+      border:none;
+      @include border-radius;
+      @include box-shadow-inset($color:rgba(0,0,0, 0.25));
+     
+      &:focus {
+        outline:none;
+        @include border-radius;
+        @include box-shadow-inset($color:rgba(0, 180, 255, 0.5));
+      }
+      
+    } 
